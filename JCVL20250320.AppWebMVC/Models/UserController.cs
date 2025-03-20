@@ -15,8 +15,7 @@ using JCVL20250320.AppWebMVC.Models;
 
 namespace JCVL20250319.AppWebMVC.Controllers
 {
-    [Authorize(Roles = "ADMINISTRADOR")]
-
+    
     public class UserController : Controller
     {
         private readonly Test20250320DbContext _context;

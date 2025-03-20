@@ -12,34 +12,62 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">JCVL20250320.AppWebMVC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <!-- Brand/Logo -->
+                <a class="navbar-brand fw-bold" asp-area="" asp-controller="Home" asp-action="Index">JCVL20250319.AppWebMVC</a>
+
+                <!-- Toggler Button for Mobile -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <!-- Navbar Links -->
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
+                        <!-- Home Link -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+
+                        <!-- Privacy Link -->
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Brand" asp-action="Index">Marcas</a>
-                        </li>
+                        <!-- Authenticated User Links -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Categori" asp-action="Index">Categorias</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Warehouse" asp-action="Index">Bodegas</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Brand" asp-action="Index">Marcas</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link " asp-area="" asp-controller="Product" asp-action="Index">Productos</a>
-                        </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">Productos</a>
+                            </li>
 
-
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">Usuarios</a>
+                            </li>
+                        }
                     </ul>
+
+                    <!-- User Session Section -->
+                    <div class="d-flex align-items-center">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            var nombre = User.FindFirst("Nombre")?.Value;
+                            <span class="text-light me-3">Bienvenido, @nombre</span>
+                            <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="User" asp-action="CerrarSession">Cerrar sesión</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-outline-dark btn-sm" asp-area="" asp-controller="User" asp-action="Login">Iniciar sesión</a>
+                        }
+                    </div>
                 </div>
             </div>
         </nav>
