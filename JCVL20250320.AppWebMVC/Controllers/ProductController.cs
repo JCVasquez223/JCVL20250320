@@ -45,7 +45,7 @@ namespace JCVL20250320.AppWebMVC.Controllers
             var bodegas = _context.Warehouses.ToList();
             bodegas.Add(new Warehouse { WarehouseName = "SELECCIONAR", WarehouseId = 0 });
 
-            ViewData["WarehouseId "] = new SelectList(bodegas, "WarehouseId", "WarehouseName", 0);
+            ViewData["WarehouseId"] = new SelectList(bodegas, "WarehouseId", "WarehouseName", 0);
             ViewData["BrandId"] = new SelectList(marcas, "BrandId", "BrandName", 0);
 
 
