@@ -6,6 +6,7 @@ namespace JCVL20250320.AppWebMVC.Models;
 
 public partial class Product
 {
+
     public int ProductId { get; set; }
 
 
@@ -19,11 +20,13 @@ public partial class Product
     [Required(ErrorMessage = "El precio es obligatorio")]
     public decimal Price { get; set; }
 
-    [Display(Name = "Categoria")]
-    public int? CategoryId { get; set; }
+    [Display(Name = "Bodega")]
+    public int? WarehouseId { get; set; }
 
     [Display(Name = "Marca")]
     public int? BrandId { get; set; }
+
+
 
     public virtual Brand? Brand { get; set; }
 

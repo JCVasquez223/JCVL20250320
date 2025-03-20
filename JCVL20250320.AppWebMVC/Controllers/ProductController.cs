@@ -10,8 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace JCVL20250320.AppWebMVC.Controllers
 {
-    [Authorize]
-
+ 
     public class ProductController : Controller
     {
         private readonly Test20250320DbContext _context;
@@ -43,10 +42,10 @@ namespace JCVL20250320.AppWebMVC.Controllers
             var marcas = _context.Brands.ToList();
             marcas.Add(new Brand { BrandName = "SELECCIONAR", BrandId = 0 });
 
-            var categorias = _context.Warehouses.ToList();
-            categorias.Add(new Warehouse { WarehouseName = "SELECCIONAR", WarehouseId = 0 });
+            var bodegas = _context.Warehouses.ToList();
+            bodegas.Add(new Warehouse { WarehouseName = "SELECCIONAR", WarehouseId = 0 });
 
-            ViewData["WarehouseId "] = new SelectList(categorias, "WarehouseId", "WarehouseName ", 0);
+            ViewData["WarehouseId "] = new SelectList(bodegas, "WarehouseId", "WarehouseName ", 0);
             ViewData["BrandId"] = new SelectList(marcas, "BrandId", "BrandName", 0);
 
 
@@ -79,7 +78,7 @@ namespace JCVL20250320.AppWebMVC.Controllers
         public IActionResult Create()
         {
             ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandName");
-            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseName ");
+            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseName");
             return View();
         }
 
@@ -97,7 +96,7 @@ namespace JCVL20250320.AppWebMVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandName", product.BrandId);
-            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseName ");
+            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseName", product.WarehouseId);
             return View(product);
         }
 
