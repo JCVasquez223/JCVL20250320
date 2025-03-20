@@ -4,9 +4,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
-
-<h4>Brand</h4>
+<h1 class="justify-content-center">Crear Marca</h1>
 
 
 <hr class="bg-primary" style="height: 2px;" />
@@ -14,19 +12,22 @@
 
 
     <div class="col-md-6">
-        <form asp-action="Create">
+        <form asp-action="Create" class="shadow p-4 rounded bg-light">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="shadow p-4 rounded bg-light">
-                <label asp-for="BrandName" class="control-label"></label>
-                <input asp-for="BrandName" class="form-control" />
-                <span asp-validation-for="BrandName" class="text-danger"></span>
+
+            <div class="form-group mb-3">
+                <label asp-for="BrandName" class="form-label fw-bold"></label>
+                <input asp-for="BrandName" class="form-control" placeholder="Ingresa el nombre de la marca" />
+                <span asp-validation-for="BrandName" class="text-danger small"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Country" class="control-label"></label>
-                <input asp-for="Country" class="form-control" />
-                <span asp-validation-for="Country" class="text-danger"></span>
+
+            <div class="form-group mb-3">
+                <label asp-for="Country" class="form-label fw-bold"></label>
+                <input asp-for="Country" class="form-control" placeholder="Ingresa el pais de origen" />
+                <span asp-validation-for="Country" class="text-danger small"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -34,8 +35,8 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="text-center mt-3">
+    <a asp-action="Index" class="btn btn-outline-secondary">Regresar</a>
 </div>
 
 @section Scripts {

@@ -21,7 +21,7 @@ namespace JCVL20250320.AppWebMVC.Controllers
         }
 
         // GET: Product
-        public async Task<IActionResult> Index(Product producto)
+        public async Task<IActionResult> Index(Product producto, int top=10)
         {
 
             var query = _context.Products.AsQueryable();
@@ -35,9 +35,10 @@ namespace JCVL20250320.AppWebMVC.Controllers
             if (producto.WarehouseId > 0)
                 query = query.Where(s => s.WarehouseId == producto.WarehouseId);
 
-
             query = query
-                .Include(p => p.Warehouse).Include(p => p.Brand);
+                            .Include(p => p.Warehouse)
+                            .Include(p => p.Brand)
+                            .Take(top);
 
             var marcas = _context.Brands.ToList();
             marcas.Add(new Brand { BrandName = "SELECCIONAR", BrandId = 0 });
