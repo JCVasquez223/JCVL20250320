@@ -11,9 +11,12 @@ public partial class Product
 
 
     [Display(Name = "Nombre Del Producto")]
+    [Required(ErrorMessage = "Informacion Obligatorio")]
     public string ProductName { get; set; } = null!;
 
     [Display(Name = "Descripcion")]
+    [Required(ErrorMessage = "Informacion Obligatorio")]
+
     public string? Description { get; set; }
 
     [Display(Name = "Precio")]
@@ -21,11 +24,12 @@ public partial class Product
     public decimal Price { get; set; }
 
     [Display(Name = "Bodega")]
+    [Required(ErrorMessage = "Informacion Obligatorio")]
+
     public int? WarehouseId { get; set; }
 
     [Display(Name = "Marca")]
     public int? BrandId { get; set; }
-
 
 
     public virtual Brand? Brand { get; set; }
