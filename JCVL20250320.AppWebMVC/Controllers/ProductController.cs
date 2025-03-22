@@ -21,9 +21,8 @@ namespace JCVL20250320.AppWebMVC.Controllers
         }
 
         // GET: Product
-        public async Task<IActionResult> Index(Product producto, int top=10)
+        public async Task<IActionResult> Index(Product producto, int top = 10)
         {
-
             var query = _context.Products.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(producto.ProductName))
@@ -48,9 +47,6 @@ namespace JCVL20250320.AppWebMVC.Controllers
 
             ViewData["WarehouseId"] = new SelectList(bodegas, "WarehouseId", "WarehouseName", 0);
             ViewData["BrandId"] = new SelectList(marcas, "BrandId", "BrandName", 0);
-
-
-
 
             return View(await query.ToListAsync());
         }
@@ -84,8 +80,6 @@ namespace JCVL20250320.AppWebMVC.Controllers
         }
 
         // POST: Product/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProductId,ProductName,Description,Price,WarehouseId,BrandId")] Product product)
@@ -114,14 +108,15 @@ namespace JCVL20250320.AppWebMVC.Controllers
             {
                 return NotFound();
             }
+
+            // Pasar los datos de los dropdowns a la vista
             ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandName", product.BrandId);
-            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseName ");
+            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseName", product.WarehouseId);
+
             return View(product);
         }
 
         // POST: Product/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProductId,ProductName,Description,Price,WarehouseId,BrandId")] Product product)
@@ -151,8 +146,11 @@ namespace JCVL20250320.AppWebMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandId", product.BrandId);
-            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseName ");
+
+            // Si el modelo no es válido, recargar los dropdowns
+            ViewData["BrandId"] = new SelectList(_context.Brands, "BrandId", "BrandName", product.BrandId);
+            ViewData["WarehouseId"] = new SelectList(_context.Warehouses, "WarehouseId", "WarehouseName", product.WarehouseId);
+
             return View(product);
         }
 

@@ -1,62 +1,67 @@
 ﻿@model JCVL20250320.AppWebMVC.Models.Product
 
 @{
-    ViewData["Title"] = "Edit Product";
+    ViewData["Title"] = "Editar Producto";
 }
 
 <div class="container mt-4">
-    <h1 class="display-4">Edit Product</h1>
+    <h1 class="display-4 text-primary"><i class="fas fa-edit"></i> Editar Producto</h1>
     <hr class="bg-primary" style="height: 2px;" />
 
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <form asp-action="Edit" class="shadow p-4 rounded bg-light">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="ProductId" />
-
+                <input type="hidden" asp-for="ProductId" /> <!-- Campo oculto para el ID del producto -->
+                <!-- Nombre del Producto -->
                 <div class="form-group mb-3">
-                    <label asp-for="ProductName" class="form-label fw-bold"></label>
-                    <input asp-for="ProductName" class="form-control" placeholder="Enter product name" />
+                    <label asp-for="ProductName" class="form-label fw-bold">Nombre del Producto</label>
+                    <input asp-for="ProductName" class="form-control" placeholder="Ingresa el nombre del producto" />
                     <span asp-validation-for="ProductName" class="text-danger small"></span>
                 </div>
 
+                <!-- Descripción -->
                 <div class="form-group mb-3">
-                    <label asp-for="Description" class="form-label fw-bold"></label>
-                    <input asp-for="Description" class="form-control" placeholder="Enter product description" />
+                    <label asp-for="Description" class="form-label fw-bold">Descripción</label>
+                    <textarea asp-for="Description" class="form-control" rows="3" placeholder="Ingresa la descripción del producto"></textarea>
                     <span asp-validation-for="Description" class="text-danger small"></span>
                 </div>
 
+                <!-- Precio -->
                 <div class="form-group mb-3">
-                    <label asp-for="Price" class="form-label fw-bold"></label>
-                    <input asp-for="Price" class="form-control" placeholder="Enter price" />
+                    <label asp-for="Price" class="form-label fw-bold">Precio</label>
+                    <input asp-for="Price" class="form-control" placeholder="Ingresa el precio" />
                     <span asp-validation-for="Price" class="text-danger small"></span>
                 </div>
 
+                <!-- Bodega (Dropdown) -->
                 <div class="form-group mb-3">
-                    <label asp-for="WarehouseId" class="form-label fw-bold"></label>
-                    <select asp-for="Warehouse" class="form-control" asp-items="ViewBag.CategoryId">
-                        <option value="">Selecionar Bodega</option>
+                    <label asp-for="WarehouseId" class="form-label fw-bold">Bodega</label>
+                    <select asp-for="WarehouseId" class="form-control" asp-items="ViewBag.WarehouseId">
+                        <option value="">Seleccionar Bodega</option>
                     </select>
                     <span asp-validation-for="WarehouseId" class="text-danger small"></span>
                 </div>
 
+                <!-- Marca (Dropdown) -->
                 <div class="form-group mb-3">
-                    <label asp-for="BrandId" class="form-label fw-bold"></label>
+                    <label asp-for="BrandId" class="form-label fw-bold">Marca</label>
                     <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId">
-                        <option value="">Select Brand</option>
+                        <option value="">Seleccionar Marca</option>
                     </select>
                     <span asp-validation-for="BrandId" class="text-danger small"></span>
                 </div>
 
+                <!-- Botones -->
                 <div class="form-group text-center">
-                    <input type="submit" value="Save" class="btn btn-primary w-50" />
+                    <button type="submit" class="btn btn-primary w-50"><i class="fas fa-save"></i> Guardar</button>
                 </div>
             </form>
         </div>
     </div>
 
     <div class="text-center mt-3">
-        <a asp-action="Index" class="btn btn-outline-secondary">Regresar</a>
+        <a asp-action="Index" class="btn btn-outline-secondary"><i class="fas fa-arrow-left"></i> Regresar</a>
     </div>
 </div>
 
